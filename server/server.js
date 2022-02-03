@@ -6,6 +6,9 @@ const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
+// import path
+const path = require('path');
+
 // import authorization middleware
 const { authMiddleware } = require("./utils/auth");
 
@@ -36,6 +39,16 @@ startServer();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// serve up static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+// wildcard GET route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})
 
 db.once("open", () => {
   app.listen(PORT, () => {
