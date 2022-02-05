@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import THoughtList from "../components/ThoughtList";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import ThoughtList from "../components/ThoughtList";
