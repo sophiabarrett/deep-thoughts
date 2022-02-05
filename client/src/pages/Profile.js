@@ -4,6 +4,7 @@ import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { ADD_FRIEND } from "../utils/mutations";
 import ThoughtList from "../components/ThoughtList";
 import FriendList from "../components/FriendList";
+import ThoughtForm from "../components/ThoughtForm";
 import Auth from "../utils/auth";
 
 const Profile = () => {
@@ -74,6 +75,8 @@ const Profile = () => {
           />
         </div>
       </div>
+
+      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
     </div>
   );
 };
